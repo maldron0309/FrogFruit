@@ -6,8 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float playerSpeed;
     [SerializeField] private float playerJump;
-
-    private int jumpCount; // 수정: int 타입으로 변경
+    
     private bool isJumping;
 
     private Rigidbody2D rb;
@@ -21,7 +20,6 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
 
         isJumping = false;
-        jumpCount = 0; // 수정: jumpCount 초기화
     }
 
     private void Update()
@@ -47,11 +45,12 @@ public class Player : MonoBehaviour
     private void PlayerJump()
     {
         //Jump
-        if (Input.GetButtonDown("Jump") && jumpCount < 2)
+        if (Input.GetButtonDown("Jump") && !isJumping)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0f); // 수정: Y 속도 초기화
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(Vector2.up * playerJump, ForceMode2D.Impulse);
-            jumpCount++;
+
+            isJumping = true;
             anim.SetBool("isJump", true);
         }
         
@@ -59,10 +58,9 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
-            jumpCount = 0; // 수정: 점프 가능한 상태로 초기화
             anim.SetBool("isJump", false);
         }
     }
