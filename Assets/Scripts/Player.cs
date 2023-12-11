@@ -42,9 +42,11 @@ public class Player : MonoBehaviour
             anim.SetBool("isRun", true);
     }
 
+    /// <summary>
+    /// Player Jump
+    /// </summary>
     private void PlayerJump()
     {
-        //Jump
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0f);
@@ -64,4 +66,6 @@ public class Player : MonoBehaviour
             anim.SetBool("isJump", false);
         }
     }
+    
+    
 }

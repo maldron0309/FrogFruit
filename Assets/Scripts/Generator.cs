@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    private const float CREATE_INTERVAL = 0.18f;
+    private const float CREATE_INTERVAL = 0.1f;
     private float creatTime = 0;
     private float totalTime = 0;
 
@@ -13,7 +13,14 @@ public class Generator : MonoBehaviour
 
     private int phase = 1;
 
+    [SerializeField] private GameObject pointFruit = null;
+
     public GameObject[] fruits;
+    
+    private void Start()
+    {
+        Invoke("SelectPointFruit", 30f); 
+    }
 
     private void Update()
     {
@@ -37,8 +44,12 @@ public class Generator : MonoBehaviour
         }
     }
     
+    private void SelectPointFruit()
+    {
+        int index = Random.Range(0, fruits.Length);
+        pointFruit = fruits[index]; 
+    }
     
-
     private void CreatFruit(float y)
     {
         float x = Random.Range(-8f, 9f);
