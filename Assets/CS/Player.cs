@@ -75,7 +75,6 @@ public class Player : MonoBehaviour
     public void Death()
     {
         isDeath = true;
-        
         anim.SetTrigger("isDeath");
         Destroy(gameObject,1f);
         GameManager.i.GameOver(); 

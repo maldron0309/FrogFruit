@@ -17,17 +17,9 @@ public class Generator : MonoBehaviour
     // 현재 단계
     private int phase = 1;
 
-    // 포인트 과일
-    [SerializeField] private GameObject pointFruit = null;
-
     // 생성할 과일들
     public GameObject[] fruits;
     
-    private void Start()
-    {
-        // 30초 후에 포인트 과일을 선택하는 함수를 호출합니다.
-        Invoke("SelectPointFruit", 30f); 
-    }
 
     private void Update()
     {
@@ -56,14 +48,7 @@ public class Generator : MonoBehaviour
             phase++;
         }
     }
-    
-    // 포인트 과일을 랜덤으로 선택하는 함수입니다.
-    private void SelectPointFruit()
-    {
-        int index = Random.Range(0, fruits.Length);
-        pointFruit = fruits[index]; 
-    }
-    
+
     // 랜덤한 위치에 과일을 생성하는 함수입니다.
     private void CreatFruit(float y)
     {
