@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
         
         anim.SetTrigger("isDeath");
         Destroy(gameObject,1f);
+        GameManager.i.GameOver(); 
     }
 
 }
